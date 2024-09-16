@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      
+      }
+      body{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color:black;
+      }
+      .container{
+        margin-top: 24px;
+        width: 200px;
+        border:solid 1px white;
+      }
+      input{
+        width: 100%;
+      }
+      ul{
+        width:100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+   ul li{
+    list-style: none;
+     transition: all ease-in-out .4s;
+     cursor: pointer;
+     color: aliceblue;
+   }
+   ul li:hover{
+     transform: scale(1.1);
+     background-color: rgb(39, 39, 39);
+   }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="container">
+            <input type="text">
+            <ul>
+                </ul>
+        </div>
+    </div>
+</body>
+<script>
+    const fxn=()=>{
+     console.log("raja")
+    const val=inp.value.toLowerCase()
+      ul.innerHTML = '';
+    const fruit=fruits.filter((elm)=>elm.toLowerCase().includes(val))
+     fruit.map((em)=>{
+        const li=document.createElement("li")
+       const spanElem = em.split(new RegExp(`(${val})`,'i'));
+       console.log(spanElem)
+    spanElem.map((item)=>{
+        if(item === val){
+            const highlightPart = document.createElement('span').innerText = item;
+            highlightPart.style.color = 'blue';
+            highlightPart.style.fontWeight = 'bold';
+            li.appendChild(highlightPart);
+        }
+        else{
+            const normalPart = document.createElement('span').innerText = item;
+            li.appendChild(normalPart);
+        }
+    })
+        li.addEventListener('click',(e)=>{
+          inp.value=elm
+          ul.innerHTML="";
+        })
+        ul.appendChild(li);
+     })
+      if(val.length===0){
+        ul.innerHTML=''
+    }
+}
+const debounce = (callback , time)=>{
+        let timer;
+        return function(){
+            if(timer)clearTimeout(timer);
+            timer = setTimeout(()=>{
+                callback();
+        },time)
+    }
+}
+const func=(s)=>{
+   
+}
+  const fruits = [
+  "Apple", "Banana", "Mango", "Orange", "Grapes", "Pineapple", "Watermelon", "Papaya", "Strawberry", "Blueberry",
+  "Raspberry", "Blackberry", "Cherry", "Kiwi", "Pear", "Peach", "Plum", "Pomegranate", "Fig", "Apricot",
+  "Guava", "Lychee", "Dragonfruit", "Passionfruit", "Durian", "Jackfruit", "Cantaloupe", "Honeydew", "Coconut", "Avocado",
+  "Lemon", "Lime", "Grapefruit", "Tangerine", "Clementine", "Mulberry", "Elderberry", "Gooseberry", "Persimmon", "Dates",
+  "Prune", "Boysenberry", "Starfruit", "Soursop", "Rambutan", "Salak", "Cranberry", "Tamarind", "Bael", "Nance",
+  "Ackee", "Breadfruit", "Carambola", "Medlar", "Jujube", "Buddha’s Hand", "Bilberry", "Cloudberry", "Jabuticaba", "Kumquat",
+  "Loquat", "Longan", "Mangosteen", "Marionberry", "Miracle Fruit", "Olive", "Sapodilla", "Santol", "Saskatoon Berry", "Sea Buckthorn",
+  "Surinam Cherry", "Ugni", "White Currant", "Wineberry", "Yumberry", "Ziziphus", "African Cucumber", "Amazon Tree Grape", "Ambarella", "Anise Hyssop",
+  "Atemoya", "Barbados Cherry", "Black Mulberry", "Blood Orange", "Camu Camu", "Cherimoya", "Chocolate Vine", "Chokeberry", "Crowberry", "Desert Lime",
+  "Feijoa", "Finger Lime", "Hog Plum", "Indian Fig", "Jocote", "Kabosu", "Kei Apple", "Kiwano", "Limequat", "Mamoncillo",
+  "Mamey Sapote", "Mammee Apple", "Monstera Deliciosa", "Mountain Pepper", "Nagami Kumquat", "Natal Plum", "Noni", "Ogeechee Lime", "Otaheite Gooseberry", "Pawpaw",
+  "Pineberry", "Pitanga", "Pitaya", "Plantain", "Pulasan", "Red Banana", "Rukam", "Safou", "Salal Berry", "Santol",
+  "Sapote", "Serviceberry", "Shonan Gold", "Soncoya", "Soursop", "Sugar Apple", "Sweet Lemon", "Sycamore Fig", "Tangelo", "Ugli Fruit",
+  "Velvet Apple", "Water Apple", "White Mulberry", "Wild Custard Apple", "Wood Apple", "Yellow Passionfruit", "Youngberry", "Zalacca", "Bignay", "Ceylon Gooseberry",
+  "Cupuacu", "Elephant Apple", "Gac", "Governor’s Plum", "Indian Gooseberry", "Junglesop", "Kaffir Lime", "Kakadu Plum", "Kapok", "Korlan",
+  "Lucuma", "Malay Apple", "Marula", "Melinjo", "Nance", "Naranjilla", "Pigeon Pea", "Pili Nut", "Pitomba", "Rangpur",
+  "Safou", "Saguaro", "Saguaro Cactus", "Satsuma", "Screw Pine", "Soursop", "Spanish Lime", "Spanish Plum", "Star Apple", "Sugar Apple",
+  "Tamarillo", "Tangerine", "White Sapote", "Wolfberry", "Yangmei", "Yellow Sapote", "Zalacca", "Zhe", "Ziziphus", "Zoospo",
+  "Carob", "Chayote", "Charichuela", "Grapple", "Hala Fruit", "Lapsi", "Malay Rose Apple", "Pepino Melon", "Rambai", "Yuzu"
+];
+  const inp=document.querySelector('input')
+  const ul=document.querySelector('ul')
+      const vari=debounce(fxn,1000)
+  inp.addEventListener('input',(e)=>{
+    vari()
+  })
+
+</script>
+</html>

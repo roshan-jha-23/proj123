@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="">State</label>
+    <select name="" class="select" id="">
+    </select>   
+     <label for="">Disct</label>
+    <select name="" class="select2" id="">
+    </select>
+</body>
+<script>
+     const statesAndDistricts = {
+  "Rajasthan": [
+    "Jaipur", 
+    "Jodhpur", 
+    "Udaipur", 
+    "Kota", 
+    "Ajmer", 
+    "Bikaner", 
+    "Alwar", 
+    "Bhilwara", 
+    "Sikar", 
+    "Pali"
+  ],
+  "West Bengal": [
+    "Kolkata", 
+    "Howrah", 
+    "Darjeeling", 
+    "Siliguri", 
+    "Durgapur", 
+    "Asansol", 
+    "Malda", 
+    "Murshidabad", 
+    "Bardhaman", 
+    "Hooghly"
+  ]
+};
+const selectState=document.querySelector('.select')
+const hello=document.querySelector('.select2')
+const states=[]
+for(let s in statesAndDistricts){
+    states.push(s)
+}
+ const op=document.createElement('option')
+    op.value=""
+    op.textContent=``
+    selectState.appendChild(op)
+    states.map((s)=>{
+    const op=document.createElement('option')
+    op.value=s
+    op.textContent=`${s}`
+    selectState.appendChild(op)
+})
+selectState.addEventListener('change',(e)=>{
+     const st=e.target.value
+     const arr=statesAndDistricts[st].map((s)=>{
+     const op=document.createElement('option')
+     op.value=s
+     op.textContent=`${s}`
+     hello.appendChild(op)
+     })
+})
+
+</script>
+</html>
